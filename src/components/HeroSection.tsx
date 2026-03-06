@@ -9,7 +9,33 @@ const avatars = [
 
 const HeroSection = () => {
   return (
-    <section className="flex flex-col items-center px-6 pb-20 pt-24 text-center">
+    <section className="relative flex flex-col items-center px-6 pb-20 pt-24 text-center">
+      <div className="absolute inset-0 overflow-hidden -z-10">
+        <svg
+          className="absolute bottom-0 left-0 w-full h-full"
+          viewBox="0 0 1440 320"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <filter id="blur" x="0" y="0">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="8" />
+            </filter>
+          </defs>
+          <path
+            d="M0,160 Q360,120 720,160 T1440,160 V320 H0 Z"
+            fill="#ff6b35"
+            filter="url(#blur)"
+            className="animate-wave1"
+          />
+          <path
+            d="M0,200 Q360,160 720,200 T1440,200 V320 H0 Z"
+            fill="#ff4500"
+            filter="url(#blur)"
+            opacity="0.7"
+            className="animate-wave2"
+          />
+        </svg>
+      </div>
       <div className="mb-8 flex items-center gap-3">
         <div className="flex -space-x-3">
           {avatars.map((src, i) => (

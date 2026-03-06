@@ -80,10 +80,20 @@ export default {
             height: "0",
           },
         },
+        wave1: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-200px)" },
+        },
+        wave2: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-150px)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        wave1: "wave1 15s ease-in-out infinite",
+        wave2: "wave2 12s ease-in-out infinite reverse",
       },
     },
   },
