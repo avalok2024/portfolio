@@ -103,7 +103,7 @@ If you'd like to collaborate, connect, or discuss projects:
 **AV Alok**
 
 GitHub
-https://github.com/avalok2024
+https://github.com/avalok2024/portfolio
 
 ---
 
