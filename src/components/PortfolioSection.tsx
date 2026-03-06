@@ -16,7 +16,7 @@ const PortfolioSection = () => {
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 text-center">
           <Badge className="mb-4 rounded-full border-border bg-secondary text-muted-foreground hover:bg-secondary">
-            Our Work
+            My Work
           </Badge>
           <h2 className="text-3xl font-extrabold text-foreground md:text-5xl">
             Creative{" "}
@@ -25,7 +25,7 @@ const PortfolioSection = () => {
             </em>
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-            A selection of our high-performing creative work across Meta and Google platforms.
+            A selection of our high-performing creative work across multiple social platforms.
           </p>
         </div>
 

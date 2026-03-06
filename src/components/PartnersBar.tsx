@@ -1,8 +1,8 @@
 const partners = [
-  "Shopify Partners",
-  "Marketing Partner",
-  "Google Partner",
-  "Meta Business Partner",
+  { name: "Coins.me", logo: "/logos/coins.me.png" },
+  { name: "P2P.me", logo: "/logos/p2pdotme.png" },
+  { name: "P2P Foundation", logo: "/logos/p2pfoundation.png" },
+  { name: "Cryptoholic", logo: "/logos/cryptoholic.png" },
 ];
 
 const PartnersBar = () => {
@@ -14,12 +14,16 @@ const PartnersBar = () => {
         </p>
         <div className="flex flex-wrap items-center justify-center gap-10 md:gap-16">
           {partners.map((p) => (
-            <span
-              key={p}
-              className="text-sm font-semibold text-muted-foreground/60"
+            <div
+              key={p.name}
+              className="flex items-center justify-center w-32 h-12"
             >
-              {p}
-            </span>
+              <img
+                src={p.logo}
+                alt={p.name}
+                className="max-h-10 w-auto object-contain grayscale hover:grayscale-0 transition"
+              />
+            </div>
           ))}
         </div>
       </div>

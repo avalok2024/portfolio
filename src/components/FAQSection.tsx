@@ -7,12 +7,12 @@ import {
 
 const faqs = [
   {
-    q: "How do you tailor Google Ads strategies for different businesses?",
-    a: "We start with a deep audit of your business model, competition, and target audience. From there we build custom campaign structures, keyword strategies, and bidding models that align with your specific growth goals and margins.",
+    q: "How do you help brands grow online?",
+    a: "I focus on building scalable growth systems, not just running ads. This includes audience research, creative strategy, campaign optimization, and funnel improvements to ensure your brand grows consistently and sustainably.",
   },
   {
-    q: "What's unique about your Meta Ads approach?",
-    a: "We combine creative testing frameworks with advanced audience segmentation and real-time optimization. Our approach focuses on full-funnel strategy — from awareness through to conversion — using data-backed creative iteration.",
+    q: "What makes your approach different?",
+    a: "Most marketers focus only on running ads. My approach focuses on growth strategy, creative testing, and performance optimization together to build campaigns that are designed to scale.",
   },
 ];
 

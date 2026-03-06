@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
-  const links = ["About Us", "Results", "Services", "Process", "AOx"];
+  const links = ["About Us", "Results", "Services", "Process", "0xavalok"];
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-md">

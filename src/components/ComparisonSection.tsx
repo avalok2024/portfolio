@@ -2,19 +2,19 @@ import { Badge } from "@/components/ui/badge";
 import { X, Check } from "lucide-react";
 
 const otherItems = [
-  "Generic strategies for all clients",
-  "Slow response times & poor communication",
-  "No real transparency on ad spend",
-  "Vanity metrics without real ROI tracking",
-  "Locked into long-term contracts",
+  "Generic marketing strategies used for every client",
+  "Slow responses and poor communication",
+  "Limited visibility into ad performance",
+  "Focus on vanity metrics like clicks and impressions",
+  "Long-term contracts with no real accountability",
 ];
 
 const conversionItems = [
-  "Tailored strategies for your brand",
-  "Dedicated account manager, fast replies",
-  "Full transparency on every dollar spent",
-  "Focus on ROAS, CAC, and real revenue",
-  "Flexible month-to-month agreements",
+  "Custom growth strategies built for your brand",
+  "Fast, direct communication and dedicated support",
+  "Complete transparency on every dollar spent",
+  "Focus on real business metrics: ROAS, CAC & revenue",
+  "Flexible month-to-month partnership — no lock-ins",
 ];
 
 const ComparisonSection = () => {
@@ -27,7 +27,7 @@ const ComparisonSection = () => {
         <h2 className="mx-auto max-w-2xl text-3xl font-extrabold text-foreground md:text-5xl">
           But, why would you want to work{" "}
           <em style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic" }}>
-            with us
+            with me
           </em>
           ?
         </h2>
@@ -35,7 +35,7 @@ const ComparisonSection = () => {
         <div className="mt-14 grid gap-6 md:grid-cols-2">
           {/* Other Agencies */}
           <div className="rounded-2xl border border-border bg-card p-8 text-left">
-            <h3 className="mb-6 text-lg font-bold text-muted-foreground">Other Agencies</h3>
+            <h3 className="mb-6 text-lg font-bold text-muted-foreground">Others</h3>
             <ul className="space-y-4">
               {otherItems.map((item) => (
                 <li key={item} className="flex items-start gap-3 text-muted-foreground/60">
@@ -46,9 +46,9 @@ const ComparisonSection = () => {
             </ul>
           </div>
 
-          {/* Conversion */}
+          {/* Av Alok */}
           <div className="rounded-2xl border border-primary/30 bg-card p-8 text-left">
-            <h3 className="mb-6 text-lg font-bold text-foreground">Conversion</h3>
+            <h3 className="mb-6 text-lg font-bold text-foreground">Av Alok</h3>
             <ul className="space-y-4">
               {conversionItems.map((item) => (
                 <li key={item} className="flex items-start gap-3 text-foreground">

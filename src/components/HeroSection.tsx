@@ -1,17 +1,17 @@
 import { Button } from "@/components/ui/button";
 
 const avatars = [
-  "https://i.pravatar.cc/40?img=1",
-  "https://i.pravatar.cc/40?img=2",
-  "https://i.pravatar.cc/40?img=3",
-  "https://i.pravatar.cc/40?img=4",
+  "/avatars/friend4.jpg",
+  "/avatars/friend3.jpg",
+  "/avatars/friend2.jpg",
+  "/avatars/friend1.jpg",
 ];
 
 const HeroSection = () => {
   return (
     <section className="flex flex-col items-center px-6 pb-20 pt-24 text-center">
       <div className="mb-8 flex items-center gap-3">
-        <div className="flex -space-x-2">
+        <div className="flex -space-x-3">
           {avatars.map((src, i) => (
             <img
               key={i}
@@ -21,7 +21,7 @@ const HeroSection = () => {
             />
           ))}
         </div>
-        <span className="text-sm text-muted-foreground">200+ businesses scaled</span>
+        <span className="text-sm text-muted-foreground">1000+ Trusted Peoples</span>
       </div>
 
       <h1 className="mx-auto max-w-4xl text-4xl font-extrabold leading-tight tracking-tight text-foreground md:text-6xl lg:text-7xl">
@@ -29,12 +29,11 @@ const HeroSection = () => {
         <em className="not-italic font-extrabold" style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic" }}>
           scale
         </em>{" "}
-        your brand with paid ads?
+        your brand with growth?
       </h1>
 
       <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground md:text-lg">
-        We help e-commerce brands and startups achieve predictable, scalable growth through
-        data-driven paid advertising on Meta and Google.
+        We help Comapny, brands and startups grow faster with data-driven marketing, creative strategy and performance scaling.
       </p>
 
       <div className="mt-10 flex items-center gap-4">

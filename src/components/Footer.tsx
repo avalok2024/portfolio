@@ -4,7 +4,7 @@ const Footer = () => {
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 md:flex-row">
         <div>
           <span className="text-lg font-bold text-foreground">Av Alok</span>
-          <p className="mt-1 text-xs text-muted-foreground">© 2025 Conversion. All rights reserved.</p>
+          <p className="mt-1 text-xs text-muted-foreground">© 2025 avalok - All rights reserved.</p>
         </div>
         <div className="flex items-center gap-6">
           {["Privacy Policy", "Terms of Service", "License", "Contact"].map((link) => (
