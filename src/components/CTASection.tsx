@@ -35,32 +35,75 @@ const CTASection = () => {
           </div>
 
           {/* Right - Scheduling widget mockup */}
-          <div className="rounded-2xl border border-border bg-card p-8">
-            <div className="mb-6 rounded-xl bg-secondary p-6">
-              <p className="text-sm font-medium text-muted-foreground">Schedule a Discovery Call</p>
-              <div className="mt-4 grid grid-cols-5 gap-2">
-                {["Mon", "Tue", "Wed", "Thu", "Fri"].map((d) => (
-                  <div key={d} className="rounded-lg bg-card px-3 py-2 text-center text-xs text-muted-foreground">
-                    {d}
-                  </div>
-                ))}
-              </div>
-              <div className="mt-4 grid grid-cols-3 gap-2">
-                {["10:00 AM", "2:00 PM", "4:00 PM"].map((t) => (
-                  <div key={t} className="rounded-lg border border-border bg-card px-3 py-2 text-center text-xs text-muted-foreground">
-                    {t}
-                  </div>
-                ))}
-              </div>
+          <div className="w-full max-w-md mx-auto rounded-2xl bg-zinc-900/70 backdrop-blur-md border border-zinc-800 p-6 sm:p-8 space-y-6">
+
+            {/* Header */}
+            <div>
+              <p className="text-red-400 text-xs tracking-widest uppercase mb-2">
+                Available this week
+              </p>
+
+              <h3 className="text-lg font-semibold">
+                Schedule a Discovery Call
+              </h3>
+
+              <p className="text-sm text-zinc-400">
+                Select your preferred day & time
+              </p>
             </div>
-            <div className="grid grid-cols-3 gap-4">
-              {stats.map((s) => (
-                <div key={s.label} className="text-center">
-                  <p className="text-2xl font-bold text-primary">{s.value}</p>
-                  <p className="mt-1 text-xs text-muted-foreground">{s.label}</p>
-                </div>
+
+            {/* Days */}
+            <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
+              {["Mon", "Tue", "Wed", "Thu", "Fri"].map((day) => (
+                <button
+                  key={day}
+                  className="py-2 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-sm"
+                >
+                  {day}
+                </button>
               ))}
             </div>
+
+            {/* Time Slots */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {["10:00 AM", "2:00 PM", "4:00 PM"].map((time) => (
+                <button
+                  key={time}
+                  className="py-3 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-sm"
+                >
+                  {time}
+                </button>
+              ))}
+            </div>
+
+            <p className="text-xs text-zinc-500 text-center">
+              *All times in your local timezone
+            </p>
+
+            {/* Stats */}
+            <div className="grid grid-cols-3 gap-4 text-center pt-4 border-t border-zinc-800">
+
+              <div>
+                <p className="text-red-400 text-xl font-bold">200+</p>
+                <p className="text-xs text-zinc-400">Brands Served</p>
+              </div>
+
+              <div>
+                <p className="text-red-400 text-xl font-bold">500+</p>
+                <p className="text-xs text-zinc-400">Growth Campaigns</p>
+              </div>
+
+              <div>
+                <p className="text-red-400 text-xl font-bold">30+</p>
+                <p className="text-xs text-zinc-400">Global Efforts</p>
+              </div>
+
+            </div>
+
+            <p className="text-xs text-center text-zinc-500">
+              ✓ Free consultation · No commitment
+            </p>
+
           </div>
         </div>
       </div>

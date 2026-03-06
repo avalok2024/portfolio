@@ -30,10 +30,10 @@ const AboutUs = () => {
       {/* Hero */}
       <section className="text-center py-16 px-4">
         <span className="inline-block rounded-full border border-border px-4 py-1.5 text-sm text-muted-foreground mb-6">
-          Behind The Agency
+          Behind The Growth
         </span>
         <h1 className="text-4xl md:text-5xl font-bold mb-2">
-          Meet the <span className="font-serif italic font-normal">Founder</span>
+          Meet the <span className="font-serif italic font-normal">Lead</span>
         </h1>
         <p className="text-muted-foreground mt-4">
           The driving force behind Conversion's omni-channel success.
@@ -41,23 +41,38 @@ const AboutUs = () => {
       </section>
 
       {/* Founder Bio */}
-      <section className="container mx-auto px-4 pb-16">
-        <div className="grid md:grid-cols-2 gap-12 items-start">
-          <div className="rounded-2xl overflow-hidden bg-secondary aspect-[3/4] max-w-sm">
-            <img src={founderImg} alt="Alexander Wright" className="w-full h-full object-cover" />
+      <section className="max-w-6xl mx-auto px-6 pb-16">
+        <div className="grid md:grid-cols-[420px_1fr] gap-16 items-center">
+
+          <div className="rounded-2xl overflow-hidden bg-secondary aspect-[3/4] w-full">
+            <img
+              src={founderImg}
+              alt="Av Alok"
+              className="w-full h-full object-cover"
+            />
           </div>
-          <div className="pt-4">
-            <p className="text-primary text-sm font-semibold tracking-wide uppercase mb-2">Hello, I'm</p>
-            <h2 className="text-4xl font-bold mb-6">Alexander Wright</h2>
+
+          <div>
+            <p className="text-primary text-sm font-semibold tracking-wide uppercase mb-2">
+              Hello, I'm
+            </p>
+
+            <h2 className="text-4xl font-bold mb-6">
+              Av Alok
+            </h2>
+
             <p className="text-muted-foreground leading-relaxed mb-4">
               With over a decade of experience in paid media and growth strategy, I founded
               Conversion to bridge the gap between creative excellence and data-driven
-              performance. I believe that scaling a brand shouldn't come at the cost of its
-              identity. My team and I have spent years perfecting an approach that doesn't
-              just chase clicks, but builds sustainable, long-term profitability for bold brands.
+              performance.
             </p>
-            <p className="font-serif italic text-xl text-muted-foreground">Alex Wright</p>
+
+            <p className="font-serif italic text-xl text-muted-foreground">
+              av alok
+            </p>
+
           </div>
+
         </div>
       </section>
 
