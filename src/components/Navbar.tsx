@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <span className="text-xl font-bold text-foreground">Conversion</span>
+        <span className="text-xl font-bold text-foreground">Av Alok</span>
         <div className="hidden items-center gap-8 md:flex">
           {links.map((link) => (
             <a

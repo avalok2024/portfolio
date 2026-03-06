@@ -8,7 +8,6 @@ const images = [
   { bg: "from-card to-secondary", label: "Retargeting" },
   { bg: "from-primary/10 to-muted", label: "Awareness" },
   { bg: "from-secondary to-primary/20", label: "Performance" },
-  { bg: "from-muted to-primary/10", label: "Creative Suite" },
 ];
 
 const PortfolioSection = () => {
