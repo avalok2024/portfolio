@@ -77,24 +77,24 @@ const CTASection = () => {
             </div>
 
             <p className="text-xs text-zinc-500 text-center">
-              *All times in your local timezone
+              *All times shown are in Indian Standard Time (IST, UTC+5)
             </p>
 
             {/* Stats */}
             <div className="grid grid-cols-3 gap-4 text-center pt-4 border-t border-zinc-800">
 
               <div>
-                <p className="text-red-400 text-xl font-bold">200+</p>
-                <p className="text-xs text-zinc-400">Brands Served</p>
+                <p className="text-red-400 text-xl font-bold">4+</p>
+                <p className="text-xs text-zinc-400"> Company/Startup Served</p>
               </div>
 
               <div>
-                <p className="text-red-400 text-xl font-bold">500+</p>
+                <p className="text-red-400 text-xl font-bold">20+</p>
                 <p className="text-xs text-zinc-400">Growth Campaigns</p>
               </div>
 
               <div>
-                <p className="text-red-400 text-xl font-bold">30+</p>
+                <p className="text-red-400 text-xl font-bold">5+</p>
                 <p className="text-xs text-zinc-400">Global Efforts</p>
               </div>
 
