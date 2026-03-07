@@ -69,8 +69,8 @@ const AboutUs = () => {
             </h2>
 
             <p className="text-muted-foreground leading-relaxed mb-4">
-              With over a decade of experience in paid media and growth strategy, I founded
-              Conversion to bridge the gap between creative excellence and data-driven
+              With over a year of experience in paid media and growth strategy, I founded
+               to bridge the gap between creative excellence and data-driven
               performance.
             </p>
 
