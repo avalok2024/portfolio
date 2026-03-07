@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   const navLinks = [
     { label: "About Us", href: "/about" },
-    { label: "Results", href: "/results" },
-    { label: "Services", href: "/services" },
-    { label: "Process", href: "/process" },
-    { label: "FAQs", href: "/faqs" },
+    { label: "Results", href: "/" },
+    { label: "Services", href: "/" },
+    { label: "Process", href: "/" },
+    { label: "FAQs", href: "/#faqs" },
   ];
 
   return (

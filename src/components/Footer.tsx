@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
-// import Link from 'next/link'; // If using Next.js
-// OR for React Router:
+import { FaXTwitter, FaLinkedinIn, FaInstagram } from "react-icons/fa6";
+import { ReactNode } from "react";
 import { Link } from 'react-router-dom';
+
+type SocialIcon = {
+  name: string;
+  icon: ReactNode;
+  hoverColor: string;
+  url: string;
+};
 
 interface NavItem {
   name: string;
   path: string;
-}
-
-interface SocialIcon {
-  name: string;
-  icon: string;
-  hoverColor: string;
-  url: string;
 }
 
 interface FooterProps {
@@ -37,41 +37,41 @@ const Footer: React.FC<FooterProps> = ({
   // Default navigation items with paths
   const defaultNavItems: NavItem[] = [
     { name: "About Us", path: "/about" },
-    { name: "Results", path: "/results" },
-    { name: "Services", path: "/services" },
-    { name: "Process", path: "/process" },
-    { name: "FAQs", path: "/faqs" }
+    { name: "Results", path: "/" },
+    { name: "Services", path: "/" },
+    { name: "Process", path: "/" },
+    { name: "FAQs", path: "/#faqs" },
   ];
 
   // Default footer links with paths
   const defaultFooterLinks: Array<{ name: string; path: string }> = [
-    { name: "Privacy Policy", path: "/privacy" },
-    { name: "Terms of Service", path: "/terms" },
-    { name: "License", path: "/license" },
-    { name: "Contact", path: "/contact" }
+    { name: "Privacy Policy", path: "/#" },
+    { name: "Terms of Service", path: "#" },
+    { name: "License", path: "#" },
+    { name: "Contact", path: "/start-scaling" }
   ];
 
   // Default social icons with URLs
   const defaultSocialIcons: SocialIcon[] = [
-    { 
-      name: "X", 
-      icon: "𝕏", 
-      hoverColor: "group-hover:bg-black",
-      url: "https://twitter.com/yourhandle"
-    },
-    { 
-      name: "In", 
-      icon: "in", 
-      hoverColor: "group-hover:bg-[#0077b5]",
-      url: "https://linkedin.com/company/yourcompany"
-    },
-    { 
-      name: "Ig", 
-      icon: "📷", 
-      hoverColor: "group-hover:bg-gradient-to-br from-[#833ab4] via-[#fd1d1d] to-[#fcb045]",
-      url: "https://instagram.com/yourhandle"
-    }
-  ];
+  { 
+    name: "X",
+    icon: <FaXTwitter size={18} />,
+    hoverColor: "group-hover:bg-black",
+    url: "https://x.com/avalok2023"
+  },
+  { 
+    name: "LinkedIn",
+    icon: <FaLinkedinIn size={18} />,
+    hoverColor: "group-hover:bg-[#0077b5]",
+    url: "https://www.linkedin.com/in/avalok"
+  },
+  { 
+    name: "Instagram",
+    icon: <FaInstagram size={18} />,
+    hoverColor: "group-hover:bg-gradient-to-br from-[#833ab4] via-[#fd1d1d] to-[#fcb045]",
+    url: "https://www.instagram.com/0xavalok"
+  }
+];
 
   // Use custom items if provided, otherwise use defaults
   const navItems = customNavItems || defaultNavItems;

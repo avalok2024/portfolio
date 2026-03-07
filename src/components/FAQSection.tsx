@@ -18,7 +18,7 @@ const faqs = [
 
 const FAQSection = () => {
   return (
-    <section className="px-6 py-20">
+    <section id="faqs" className="px-6 py-20">
       <div className="mx-auto max-w-3xl">
         <Accordion type="single" collapsible className="space-y-4">
           {faqs.map((faq, i) => (

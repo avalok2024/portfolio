@@ -1,20 +1,20 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Badge } from "@/components/ui/badge";
 
-import poster12 from "@/assests/poster/poster12.png";
-import poster2 from "@/assests/poster/poster2.jpg";
-import poster3 from "@/assests/poster/poster3.png";
-import poster4 from "@/assests/poster/poster4.png";
-import poster5 from "@/assests/poster/poster5.png";
-import poster6 from "@/assests/poster/poster6.png";
-import poster7 from "@/assests/poster/poster7.png";
-import poster8 from "@/assests/poster/poster8.png";
-import poster9 from "@/assests/poster/poster9.png";
-import poster10 from "@/assests/poster/poster10.png";
-import poster11 from "@/assests/poster/poster11.png";
-import poster1 from "@/assests/poster/poster1.png";
-import poster13 from "@/assests/poster/poster13.png";
-import poster14 from "@/assests/poster/poster14.jpg";
+import poster12 from "@/assests/poster/poster12.webp";
+import poster2 from "@/assests/poster/poster2.webp";
+import poster3 from "@/assests/poster/poster3.webp";
+import poster4 from "@/assests/poster/poster4.webp";
+import poster5 from "@/assests/poster/poster5.webp";
+import poster6 from "@/assests/poster/poster6.webp";
+import poster7 from "@/assests/poster/poster7.webp";
+import poster8 from "@/assests/poster/poster8.webp";
+import poster9 from "@/assests/poster/poster9.webp";
+import poster10 from "@/assests/poster/poster10.webp";
+import poster11 from "@/assests/poster/poster11.webp";
+import poster1 from "@/assests/poster/poster1.webp";
+import poster13 from "@/assests/poster/poster13.webp";
+import poster14 from "@/assests/poster/poster14.webp";
 
 const images = [
   { src: poster12, link: "https://luma.com/7jo1otl0", label: "P2P Keyholders Hour : Bengaluru", description: "IBW (India Blockchain Week) for a raw, no-fluff Cypherpunk 2.0 meetup." },
@@ -36,6 +36,19 @@ const images = [
 const PortfolioSection = () => {
 
   const [showAll, setShowAll] = useState(false);
+
+  const gridRef = useRef<HTMLDivElement | null>(null);
+
+  const handleToggle = () => {
+    setShowAll((prev) => !prev);
+
+    setTimeout(() => {
+      gridRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }, 200);
+  };
 
   return (
     <section className="px-6 py-20 overflow-hidden">
@@ -60,8 +73,10 @@ const PortfolioSection = () => {
         </div>
 
         {/* Masonry Grid */}
-        <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
-
+        <div
+          ref={gridRef}
+          className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4"
+        >
           {images.map((item, i) => {
 
             const hidden = !showAll && i >= 8;
@@ -78,7 +93,6 @@ const PortfolioSection = () => {
                 }`}
               >
 
-                {/* Poster */}
                 <img
                   src={item.src}
                   alt={item.label}
@@ -86,12 +100,9 @@ const PortfolioSection = () => {
                   className="w-full h-auto object-cover select-none transition-transform duration-500 ease-out group-hover:scale-110"
                 />
 
-                {/* Hover Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 transition duration-300 group-hover:opacity-100" />
 
-                {/* Text */}
                 <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 transition duration-300 group-hover:opacity-100">
-
                   <h3 className="text-sm font-semibold">
                     {item.label}
                   </h3>
@@ -99,14 +110,12 @@ const PortfolioSection = () => {
                   <p className="mt-1 text-xs text-white/80">
                     {item.description}
                   </p>
-
                 </div>
 
               </a>
             );
 
           })}
-
         </div>
 
         {/* View More Section */}
@@ -120,7 +129,7 @@ const PortfolioSection = () => {
             <div className="relative z-20 flex justify-center pt-12">
 
               <button
-                onClick={() => setShowAll(!showAll)}
+                onClick={handleToggle}
                 className="rounded-full border border-border bg-background/60 backdrop-blur px-8 py-3 text-sm font-semibold text-foreground shadow-xl transition-all duration-300 hover:bg-secondary hover:scale-105 active:scale-95"
               >
                 {showAll ? "Show Less" : "View More"}
