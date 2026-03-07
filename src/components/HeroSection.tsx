@@ -63,11 +63,14 @@ const HeroSection = () => {
       </p>
 
       <div className="mt-10 flex items-center gap-4">
-        <Button className="rounded-full bg-primary px-8 py-6 text-base font-semibold text-primary-foreground hover:bg-primary/90">
+        <Button onClick={() => window.location.href = "/start-scaling"} className="rounded-full bg-primary px-8 py-6 text-base font-semibold text-primary-foreground hover:bg-primary/90">
           Book a call
         </Button>
         <Button
           variant="outline"
+          onClick={() =>
+            document.getElementById("footer")?.scrollIntoView({ behavior: "smooth" })
+          }
           className="rounded-full border-border px-8 py-6 text-base font-semibold text-foreground hover:bg-secondary"
         >
           Learn More
