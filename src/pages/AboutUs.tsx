@@ -5,21 +5,28 @@ import Footer from "@/components/Footer";
 import CTASection from "@/components/CTASection";
 
 const highlights = [
-  "Scaled 50+ e-commerce brands past $10M ARR",
-  "Managed $100M+ in ad spend across Google & Meta",
-  "Former Head of Growth at top-tier agencies",
-  "Featured speaker at AdWorld 2024",
+  "Growth & marketing contributor for P2P.me, P2P Foundation, and Coins.me",
+  "Scaling Web3 communities through strategic campaigns and partnerships",
+  "Leading ambassador programs and creator-driven growth initiatives",
+  "Focused on driving adoption of decentralized financial infrastructure"
+];
+
+const socials = [
+  { name: "LinkedIn", url: "https://linkedin.com/in/avalok" },
+  { name: "Twitter", url: "https://twitter.com/avalok2023" },
+  { name: "Instagram", url: "https://instagram.com/0xavalok" },
+  { name: "Discord", url: "https://discord.gg/0xavalok" },
 ];
 
 const expertise = [
-  "Performance Marketing",
-  "Growth Strategy",
-  "Media Buying",
-  "CRO",
-  "Creative Direction",
-  "Data Analytics",
-  "Brand Scaling",
-  "Team Leadership",
+  "Artificial Intelligence",
+  "Deep Learning & Neural Networks",
+  "Computer Vision",
+  "Mathematical Modeling",
+  "Web3 Ecosystem Growth",
+  "Data Science",
+  "AI Research",
+  "Product Strategy"
 ];
 
 const AboutUs = () => {
@@ -120,24 +127,26 @@ const AboutUs = () => {
               <h3 className="font-semibold text-lg">Connect</h3>
             </div>
             <div className="grid grid-cols-2 gap-2 mb-4">
-              {["LinkedIn", "Twitter", "Instagram", "Website"].map((s) => (
+              {socials.map((s) => (
                 <a
-                  key={s}
-                  href="#"
+                  key={s.name}
+                  href={s.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center gap-2 rounded-lg border border-border px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  {s}
+                  {s.name}
                 </a>
               ))}
             </div>
             <div className="space-y-2 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4" />
-                alex@conversion.studio
+                avalok2023@gmail.com
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4" />
-                Based in NY, Global Reach
+                Based in New Delhi, Global Reach
               </div>
             </div>
           </div>
