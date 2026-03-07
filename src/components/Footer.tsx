@@ -79,7 +79,7 @@ const Footer: React.FC<FooterProps> = ({
   const socialIcons = customSocialIcons || defaultSocialIcons;
 
   return (
-    <footer className="relative border-t border-border/50 bg-gradient-to-b from-background to-background/95 px-4 sm:px-6 py-8 sm:py-10 overflow-hidden">
+    <footer id="footer" className="relative border-t border-border/50 bg-gradient-to-b from-background to-background/95 px-4 sm:px-6 py-8 sm:py-10 overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-primary/5 blur-3xl animate-pulse-slow" />
