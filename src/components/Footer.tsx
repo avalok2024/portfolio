@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaXTwitter, FaLinkedinIn, FaInstagram } from "react-icons/fa6";
+import { FaXTwitter, FaLinkedinIn, FaInstagram, FaTelegram } from "react-icons/fa6";
 import { ReactNode } from "react";
 import { Link } from 'react-router-dom';
 
@@ -70,7 +70,26 @@ const Footer: React.FC<FooterProps> = ({
     icon: <FaInstagram size={18} />,
     hoverColor: "group-hover:bg-gradient-to-br from-[#833ab4] via-[#fd1d1d] to-[#fcb045]",
     url: "https://www.instagram.com/0xavalok"
-  }
+  },
+  {
+  name: "Telegram",
+  icon: <FaTelegram size={18} />,
+  hoverColor: "group-hover:bg-[#0088cc]",
+  url: "https://t.me/yourusername"
+}, 
+{
+  name: "P2P.me",
+  icon: (
+    <img
+      src="/p2p.ico"
+      alt="icon"
+      className="w-[18px] h-[18px] opacity-70 brightness-5 invert-0 group-hover:invert"
+    />
+  ),
+  hoverColor: "group-hover:bg-primary",
+  url: "https://app.p2p.lol/campaign?id=5&manage=lok"
+}
+
 ];
 
   // Use custom items if provided, otherwise use defaults

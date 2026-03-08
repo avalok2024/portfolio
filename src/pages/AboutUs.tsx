@@ -12,10 +12,14 @@ const highlights = [
 ];
 
 const socials = [
-  { name: "LinkedIn", url: "https://linkedin.com/in/avalok" },
+  { name: "P2P.me", url: "https://app.p2p.lol/campaign?id=5&manage=lok" },
   { name: "Twitter", url: "https://twitter.com/avalok2023" },
+  { name: "Telegram", url: "https://t.me/avalok2024" },
+  { name: "LinkedIn", url: "https://linkedin.com/in/avalok" },
   { name: "Instagram", url: "https://instagram.com/0xavalok" },
   { name: "Discord", url: "https://discord.gg/0xavalok" },
+  { name: "Base", url: "https://wallet.coinbase.com/post/0x1932500256769e54fcd23d890cc2fdb6fe66358a" },
+  { name: "Linktree", url: "https://linktr.ee/avalok2024" },
 ];
 
 const expertise = [
