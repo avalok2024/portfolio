@@ -43,7 +43,7 @@ const AboutUs = () => {
           Meet the <span className="font-serif italic font-normal">Lead</span>
         </h1>
         <p className="text-muted-foreground mt-4">
-          The driving force behind Conversion's omni-channel success.
+          The minds driving the success of P2Pdotme
         </p>
       </section>
 
