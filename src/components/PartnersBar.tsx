@@ -3,6 +3,7 @@ const partners = [
   { name: "P2P.me", logo: "/logos/p2pdotme.png" },
   { name: "P2P Foundation", logo: "/logos/p2pfoundation.png" },
   { name: "Cryptoholic", logo: "/logos/cryptoholic.png" },
+  { name: "Magiccraft", logo: "/logos/magiccraft.png" },
 ];
 
 const PartnersBar = () => {
