@@ -13,7 +13,7 @@ const highlights = [
 
 const socials = [
   { name: "P2P.me", url: "https://app.p2p.lol/campaign?id=5&manage=lok" },
-  { name: "Twitter", url: "https://twitter.com/avalok2023" },
+  { name: "X/Twitter", url: "https://twitter.com/avalok2023" },
   { name: "Telegram", url: "https://t.me/avalok2024" },
   { name: "LinkedIn", url: "https://linkedin.com/in/avalok" },
   { name: "Instagram", url: "https://instagram.com/0xavalok" },
@@ -23,13 +23,15 @@ const socials = [
 ];
 
 const expertise = [
-  "Artificial Intelligence",
-  "Deep Learning & Neural Networks",
-  "Computer Vision",
+  "Designer",
+  "Marketor",
+  "Growth",
   "Mathematical Modeling",
   "Web3 Ecosystem Growth",
-  "Data Science",
+  "Data Science & Analytics",
   "AI Research",
+  "Creative Strategy",
+  "Statistical Analysis",
   "Product Strategy"
 ];
 

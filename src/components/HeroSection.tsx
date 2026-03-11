@@ -59,7 +59,7 @@ const HeroSection = () => {
       </h1>
 
       <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground md:text-lg">
-        We help Comapny, brands and startups grow faster with data-driven marketing, creative strategy and performance scaling.
+        I help Company, brands and startups grow faster with data-driven marketing, creative strategy and performance scaling.
       </p>
 
       <div className="mt-10 flex items-center gap-4">
