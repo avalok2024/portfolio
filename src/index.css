@@ -68,3 +68,402 @@ html {
   scroll-behavior: smooth;
 }
 
+/* ═══════════════════════════════════════════════════════════════════
+   Growth Dashboard — index.css
+   Global animations, transitions, and utility styles.
+   Import this in your Next.js _app.tsx / layout.tsx
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Google Fonts ─────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* ── CSS Reset additions ──────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: #0b0b0c;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   1. KEYFRAME ANIMATIONS
+══════════════════════════════════════════════════════════════════ */
+
+/* Gentle ambient pulse — used by background orbs */
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.55; transform: scale(1);   }
+  50%       { opacity: 0.80; transform: scale(1.08); }
+}
+
+@keyframes pulse-slow2 {
+  0%, 100% { opacity: 0.40; transform: scale(1);   }
+  50%       { opacity: 0.65; transform: scale(1.06); }
+}
+
+/* Floating drift — subtle Y movement for background blobs */
+@keyframes float {
+  0%, 100% { transform: translateY(0px);  }
+  50%       { transform: translateY(-18px); }
+}
+
+/* Fade + rise — generic entrance */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* Fade + slide right — insights list */
+@keyframes fade-right {
+  from { opacity: 0; transform: translateX(24px); }
+  to   { opacity: 1; transform: translateX(0);    }
+}
+
+/* Scale in — cards, posters */
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.94); }
+  to   { opacity: 1; transform: scale(1);    }
+}
+
+/* Bar rise — chart columns */
+@keyframes bar-rise {
+  from { height: 0 !important; }
+  to   { /* height set inline */ }
+}
+
+/* Progress fill — revenue table bars */
+@keyframes fill-right {
+  from { width: 0 !important; }
+  to   { /* width set inline */ }
+}
+
+/* Dot blink — live indicator */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.25; }
+}
+
+/* Shimmer — skeleton loading placeholder */
+@keyframes shimmer {
+  0%   { background-position: -600px 0; }
+  100% { background-position:  600px 0; }
+}
+
+/* Glow pulse — primary accent elements */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 8px  rgba(255, 75, 62, 0.35); }
+  50%       { box-shadow: 0 0 20px rgba(255, 75, 62, 0.65); }
+}
+
+/* Spin — loading spinners */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Marquee — horizontal scroll text */
+@keyframes marquee {
+  from { transform: translateX(0%);    }
+  to   { transform: translateX(-50%);  }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   2. ANIMATION UTILITY CLASSES
+      (Tailwind-style, add directly in className or via @apply)
+══════════════════════════════════════════════════════════════════ */
+
+.animate-pulse-slow {
+  animation: pulse-slow 6s ease-in-out infinite;
+}
+
+.animate-pulse-slow2 {
+  animation: pulse-slow2 8s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 7s ease-in-out infinite;
+}
+
+.animate-fade-up {
+  animation: fade-up 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-fade-right {
+  animation: fade-right 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-blink {
+  animation: blink 1.4s step-start infinite;
+}
+
+.animate-spin-slow {
+  animation: spin 2s linear infinite;
+}
+
+.animate-glow {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* Stagger helpers (use delay-[n]ms or these classes) */
+.delay-75  { animation-delay:  75ms; }
+.delay-100 { animation-delay: 100ms; }
+.delay-150 { animation-delay: 150ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+.delay-700 { animation-delay: 700ms; }
+.delay-800 { animation-delay: 800ms; }
+
+/* ══════════════════════════════════════════════════════════════════
+   3. TRANSITION UTILITIES
+══════════════════════════════════════════════════════════════════ */
+
+/* Smooth default for interactive elements */
+.transition-base {
+  transition-property: color, background-color, border-color, opacity,
+                        box-shadow, transform, filter;
+  transition-duration: 220ms;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Snappy for toggles & micro-interactions */
+.transition-snappy {
+  transition-property: color, background-color, border-color, opacity, transform;
+  transition-duration: 140ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Elastic scale for buttons */
+.transition-elastic {
+  transition-property: transform, box-shadow;
+  transition-duration: 280ms;
+  transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   4. COMPONENT-SPECIFIC STYLES & HOVER STATES
+══════════════════════════════════════════════════════════════════ */
+
+/* --- Metric cards --- */
+.metric-card-hover {
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.28s ease,
+              background-color 0.2s ease,
+              border-color 0.2s ease;
+}
+.metric-card-hover:hover {
+  transform: translateY(-4px) scale(1.015);
+  background-color: rgba(255, 255, 255, 0.055);
+  border-color: rgba(255, 255, 255, 0.10);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45),
+              0 0  18px rgba(255, 75, 62, 0.08);
+}
+
+/* --- Snapshot boxes --- */
+.snapshot-box-hover {
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              background-color 0.2s ease;
+}
+.snapshot-box-hover:hover {
+  transform: translateY(-3px) scale(1.02);
+  background-color: rgba(255, 255, 255, 0.07);
+}
+
+/* --- Insight items --- */
+.insight-item-hover {
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              background-color 0.2s ease,
+              border-color 0.2s ease;
+}
+.insight-item-hover:hover {
+  transform: translateX(4px);
+  background-color: rgba(255, 255, 255, 0.055);
+  border-color: rgba(255, 75, 62, 0.18);
+}
+.insight-item-hover:hover .insight-icon-inner {
+  background-color: rgba(255, 75, 62, 0.22);
+}
+
+/* --- Activity boxes --- */
+.activity-box-hover {
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              background-color 0.2s ease,
+              border-color 0.2s ease;
+}
+.activity-box-hover:hover {
+  transform: translateY(-3px);
+  background-color: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* --- Poster hover (zoom + glow) --- */
+.poster-hover {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.35s ease,
+              border-color 0.2s ease;
+  cursor: pointer;
+}
+.poster-hover:hover {
+  transform: scale(1.04) translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55),
+              0 0  18px rgba(255, 75, 62, 0.12);
+  border-color: rgba(255, 75, 62, 0.25);
+}
+.poster-hover img {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.poster-hover:hover img {
+  transform: scale(1.06);
+}
+
+/* --- Navbar pill hover --- */
+nav li {
+  position: relative;
+  cursor: pointer;
+}
+nav li::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1px;
+  background: #ff4b3e;
+  transition: width 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+nav li:hover::after {
+  width: 100%;
+}
+
+/* --- CTA button glow on hover --- */
+.btn-primary-glow {
+  transition: background-color 0.2s ease,
+              transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.25s ease;
+}
+.btn-primary-glow:hover {
+  box-shadow: 0 0 24px rgba(255, 75, 62, 0.45),
+              0 8px 20px rgba(0, 0, 0, 0.35);
+  transform: translateY(-2px) scale(1.02);
+}
+.btn-primary-glow:active {
+  transform: scale(0.97);
+}
+
+/* --- Bar chart columns --- */
+.bar-col {
+  transition: filter 0.2s ease;
+}
+.bar-col:hover .bar-primary-col {
+  filter: brightness(1.25);
+}
+
+/* --- Timeline dot glow --- */
+.timeline-dot {
+  transition: box-shadow 0.25s ease, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.timeline-dot:hover {
+  transform: scale(1.4);
+  box-shadow: 0 0 12px rgba(255, 75, 62, 0.65);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   5. SCROLLBAR STYLING
+══════════════════════════════════════════════════════════════════ */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0b0b0c;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 75, 62, 0.35);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 75, 62, 0.60);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   6. SELECTION COLOR
+══════════════════════════════════════════════════════════════════ */
+::selection {
+  background: rgba(255, 75, 62, 0.30);
+  color: #ffffff;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   7. FOCUS / ACCESSIBILITY
+══════════════════════════════════════════════════════════════════ */
+:focus-visible {
+  outline: 2px solid rgba(255, 75, 62, 0.70);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   8. REDUCED MOTION SUPPORT
+      Respects the user's OS-level "reduce motion" setting.
+══════════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   9. RESPONSIVE TWEAKS
+══════════════════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  /* Tighten up hero title tracking on small screens */
+  .hero-title-responsive {
+    letter-spacing: -1.2px;
+  }
+
+  /* Reduce ambient orb size */
+  .ambient-orb-primary {
+    width: 280px !important;
+    height: 280px !important;
+  }
+
+  /* Simplify shadows on mobile for performance */
+  .metric-card-hover:hover,
+  .snapshot-box-hover:hover,
+  .poster-hover:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   10. SHIMMER SKELETON (optional loading states)
+══════════════════════════════════════════════════════════════════ */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.04) 25%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.04) 75%
+  );
+  background-size: 600px 100%;
+  animation: shimmer 1.6s infinite linear;
+  border-radius: 8px;
+}
