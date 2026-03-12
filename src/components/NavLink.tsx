@@ -23,6 +23,15 @@ const NavLink = forwardRef<HTMLAnchorElement, NavLinkCompatProps>(
   },
 );
 
+<NavLink
+  to="/events"
+  className="text-white/50 hover:text-white transition-colors"
+  activeClassName="text-[#ff5c35] underline underline-offset-4"
+>
+  Events
+</NavLink>
+
+
 NavLink.displayName = "NavLink";
 
 export { NavLink };

@@ -36,8 +36,8 @@ const Footer: React.FC<FooterProps> = ({
 
   // Default navigation items with paths
   const defaultNavItems: NavItem[] = [
+    { name: "Events", path: "/events" },
     { name: "About Us", path: "/about" },
-    { name: "Results", path: "/" },
     { name: "Services", path: "/" },
     { name: "Process", path: "/" },
     { name: "FAQs", path: "/#faqs" },

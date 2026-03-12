@@ -1,0 +1,83 @@
+{
+  "meta": {
+    "festivalName": "Events",
+    "autoplayMs": 5000
+  },
+  "events": [
+    {
+      "id": 1,
+      "category": "%",
+      "categorySub": "*",
+      "tag": "$",
+      "tagSub": "#",
+      "subtitle": "2025",
+      "title": "ETH Global New Delhi",
+      "titleEn": "Endless Night",
+      "director": "P2P.me",
+      "meta": "New Delhi",
+      "lang": "English",
+      "image": "/events/event-ETHGlobal.png",
+      "imageFallback": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=1200&q=80"
+    },
+    {
+      "id": 2,
+     "category": "%",
+      "categorySub": "*",
+      "tag": "$",
+      "tagSub": "#",
+      "subtitle": "2025",
+      "title": "P2P.me Movie Night",
+      "titleEn": "Voices in the Dark",
+      "director": "",
+      "meta": "New Delhi",
+      "lang": "English",
+      "image": "/events/event-delhi-movienight.png",
+      "imageFallback": ""
+    },
+    {
+      "id": 3,
+     "category": "%",
+      "categorySub": "*",
+      "tag": "$",
+      "tagSub": "#",
+      "subtitle": "2025",
+      "title": "P2P Foundation Workshop",
+      "titleEn": "Eternal Return",
+      "director": "",
+      "meta": "Jabalpur · Madhya Pardesh",
+      "lang": "English",
+      "image": "/events/event-jabalpur-workshop.png",
+      "imageFallback": "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=1200&q=80"
+    },
+    {
+      "id": 4,
+      "category": "%",
+      "categorySub": "*",
+      "tag": "$",
+      "tagSub": "#",
+      "subtitle": "2025",
+      "title": "P2P.me Movie Night",
+      "titleEn": "The Girl Who Vanished",
+      "director": "",
+      "meta": "Pune",
+      "lang": "English",
+      "image": "/events/event-pune-movienight.png",
+      "imageFallback": ""
+    },
+    {
+      "id": 5,
+      "category": "%",
+      "categorySub": "*",
+      "tag": "$",
+      "tagSub": "#",
+      "subtitle": "2025",
+      "title": "House Party with P2P.me",
+      "titleEn": "The Lost Season",
+      "director": "",
+      "meta": "chattarpur · New Delhi",
+      "lang": "English",
+      "image": "/events/event-houseparty.png",
+      "imageFallback": "https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=1200&q=80"
+    }
+  ]
+}

@@ -6,6 +6,7 @@ import FAQSection from "@/components/FAQSection";
 import PortfolioSection from "@/components/PortfolioSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
+import EventGallery from "@/components/EventGallary";
 
 const Index = () => {
   return (
