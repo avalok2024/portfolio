@@ -122,6 +122,20 @@ export default function EventGallery() {
           transform: scale(1.05);
         }
 
+        .jiff-root img {
+  -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: none;
+}
+.jiff-root .jiff-side-wrap,
+.jiff-root [role="button"] {
+  pointer-events: all;
+}
+.jiff-bottom-info h2,
+.jiff-bottom-info p {
+  text-shadow: 0 1px 8px rgba(0,0,0,0.85), 0 2px 24px rgba(0,0,0,0.6);
+}
+
         @keyframes jiffProgress {
           from { transform: scaleX(0); }
           to   { transform: scaleX(1); }
@@ -141,15 +155,14 @@ export default function EventGallery() {
         {/* ── NAVBAR ─────────────────────────────────────────────────────── */}
         <nav className="flex items-center justify-between px-5 sm:px-8 lg:px-14 py-3.5 border-b border-white/[0.06]">
           <div className="flex gap-4 sm:gap-7">
-            {([ "Communities"] as const).map((label, i) => (
+            {(["Communities"] as const).map((label, i) => (
               <a
                 key={label}
                 href="#"
-                className={`text-[10px] sm:text-[11px] tracking-[0.2em] uppercase transition-colors ${
-                  i === 3
+                className={`text-[10px] sm:text-[11px] tracking-[0.2em] uppercase transition-colors ${i === 3
                     ? "text-[#ff5c35] underline underline-offset-4 decoration-[#ff5c35]/40"
                     : "text-white/38 hover:text-white/75"
-                }`}
+                  }`}
               >
                 {label}
               </a>
@@ -187,6 +200,7 @@ export default function EventGallery() {
             style={{ width: "clamp(62px, 7vw, 100px)" }}
           >
             <img
+              draggable="false"
               src={resolveImage(prevE)}
               alt={prevE.titleEn}
               onError={(ev) => {
@@ -222,6 +236,7 @@ export default function EventGallery() {
           {/* CENTER — current slide */}
           <div className="relative flex-1 overflow-hidden">
             <img
+              draggable="false"
               src={resolveImage(e)}
               alt={e.titleEn}
               onError={(ev) => {
@@ -278,6 +293,7 @@ export default function EventGallery() {
               className="h-1/2 relative overflow-hidden border-b border-white/[0.07] cursor-pointer jiff-side-wrap"
             >
               <img
+                draggable="false"
                 src={resolveImage(nextE)}
                 alt={nextE.titleEn}
                 onError={(ev) => {
@@ -305,6 +321,7 @@ export default function EventGallery() {
               className="h-1/2 relative overflow-hidden cursor-pointer jiff-side-wrap"
             >
               <img
+                draggable="false"
                 src={resolveImage(nextE)}
                 alt={nextE.titleEn}
                 onError={(ev) => {
@@ -373,11 +390,10 @@ export default function EventGallery() {
                   key={i}
                   onClick={() => goTo(i)}
                   aria-label={`Go to slide ${i + 1}`}
-                  className={`rounded-full transition-all duration-300 focus:outline-none ${
-                    i === current
+                  className={`rounded-full transition-all duration-300 focus:outline-none ${i === current
                       ? "w-5 h-[4px] bg-[#ff5c35]"
                       : "w-[4px] h-[4px] bg-white/18 hover:bg-white/40"
-                  }`}
+                    }`}
                 />
               ))}
             </div>
