@@ -103,11 +103,12 @@ const AboutUs = () => {
                 <X className="w-4 h-4" />
               </button>
             </div>
-            <iframe
-              src="/resume.pdf#toolbar=0&navpanes=0&scrollbar=0"
-              className="flex-1 w-full"
-              title="Resume"
-            />
+           <iframe
+  src={`https://docs.google.com/viewer?url=${encodeURIComponent("https://avalok.netlify.app/resume.pdf")}&embedded=true`}
+  className="flex-1 w-full"
+  title="Resume"
+  sandbox="allow-scripts allow-same-origin"
+/>
           </div>
         </div>
       )}
