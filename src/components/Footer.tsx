@@ -75,7 +75,7 @@ const Footer: React.FC<FooterProps> = ({
   name: "Telegram",
   icon: <FaTelegram size={18} />,
   hoverColor: "group-hover:bg-[#0088cc]",
-  url: "https://t.me/yourusername"
+  url: "https://t.me/avalok2024"
 }, 
 {
   name: "P2P.me",
