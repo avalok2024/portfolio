@@ -122,20 +122,6 @@ export default function EventGallery() {
           transform: scale(1.05);
         }
 
-        .jiff-root img {
-  -webkit-user-drag: none;
-  user-select: none;
-  pointer-events: none;
-}
-.jiff-root .jiff-side-wrap,
-.jiff-root [role="button"] {
-  pointer-events: all;
-}
-.jiff-bottom-info h2,
-.jiff-bottom-info p {
-  text-shadow: 0 1px 8px rgba(0,0,0,0.85), 0 2px 24px rgba(0,0,0,0.6);
-}
-
         @keyframes jiffProgress {
           from { transform: scaleX(0); }
           to   { transform: scaleX(1); }
@@ -148,6 +134,21 @@ export default function EventGallery() {
         .jiff-trans-img     { transition: opacity 0.45s ease, transform 0.5s ease; }
         .jiff-trans-content { transition: opacity 0.35s ease, transform 0.38s ease; }
         .jiff-trans-side    { transition: opacity 0.38s ease; }
+        
+        .jiff-root img {
+          -webkit-user-drag: none;
+            user-select: none;
+            pointer-events: none;
+          }
+          .jiff-root .jiff-side-wrap,
+          .jiff-root [role="button"] {
+            pointer-events: all;
+          }
+          .jiff-bottom-info h2,
+          .jiff-bottom-info p {
+            text-shadow: 0 1px 8px rgba(0,0,0,0.85), 0 2px 24px rgba(0,0,0,0.6);
+          }
+
       `}</style>
 
       <section className="jiff-root bg-[#0c0c0c] text-white w-full overflow-hidden">

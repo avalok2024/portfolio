@@ -1,4 +1,5 @@
-import { CheckCircle, Award, Zap, Link as LinkIcon, Mail, MapPin } from "lucide-react";
+import { useState } from "react";
+import { CheckCircle, Award, Zap, Link as LinkIcon, Mail, MapPin, FileText, X } from "lucide-react";
 import founderImg from "@/assests/founder.jpg";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -8,7 +9,7 @@ const highlights = [
   "Growth & marketing contributor for P2P.me, P2P Foundation, and Coins.me",
   "Scaling Web3 communities through strategic campaigns and partnerships",
   "Leading ambassador programs and creator-driven growth initiatives",
-  "Focused on driving adoption of decentralized financial infrastructure"
+  "Focused on driving adoption of decentralized financial infrastructure",
 ];
 
 const socials = [
@@ -32,10 +33,12 @@ const expertise = [
   "AI Research",
   "Creative Strategy",
   "Statistical Analysis",
-  "Product Strategy"
+  "Product Strategy",
 ];
 
 const AboutUs = () => {
+  const [showResume, setShowResume] = useState(false);
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -56,42 +59,63 @@ const AboutUs = () => {
       {/* Founder Bio */}
       <section className="max-w-6xl mx-auto px-6 pb-16">
         <div className="grid md:grid-cols-[420px_1fr] gap-16 items-center">
-
           <div className="rounded-2xl overflow-hidden bg-secondary aspect-[3/4] w-full">
-            <img
-              src={founderImg}
-              alt="Av Alok"
-              className="w-full h-full object-cover"
-            />
+            <img src={founderImg} alt="Av Alok" className="w-full h-full object-cover" />
           </div>
 
           <div>
             <p className="text-primary text-sm font-semibold tracking-wide uppercase mb-2">
               Hello, I'm
             </p>
-
-            <h2 className="text-4xl font-bold mb-6">
-              Av Alok
-            </h2>
-
+            <h2 className="text-4xl font-bold mb-6">Av Alok</h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
               With over a year of experience in paid media and growth strategy, I founded
-               to bridge the gap between creative excellence and data-driven
-              performance.
+              to bridge the gap between creative excellence and data-driven performance.
             </p>
-
-            <p className="font-serif italic text-xl text-muted-foreground">
-              av alok
-            </p>
-
+            <p className="font-serif italic text-xl text-muted-foreground mb-6">av alok</p>
+            <button
+              onClick={() => setShowResume(true)}
+              className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold text-sm tracking-wide hover:bg-primary/90 transition-colors duration-200"
+            >
+              <FileText className="w-4 h-4" />
+              View Resume
+            </button>
           </div>
-
         </div>
       </section>
+
+      {/* Resume Modal */}
+      {showResume && (
+        <div
+          className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4"
+          onClick={() => setShowResume(false)}
+        >
+          <div
+            className="bg-background rounded-2xl w-full max-w-3xl h-[90vh] flex flex-col overflow-hidden shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between px-5 py-3 border-b border-border">
+              <span className="font-semibold text-sm">Resume of Av Alok</span>
+              <button
+                onClick={() => setShowResume(false)}
+                className="text-muted-foreground hover:text-foreground transition-colors rounded-full p-1 hover:bg-secondary"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+            <iframe
+              src="/resume.pdf#toolbar=0&navpanes=0&scrollbar=0"
+              className="flex-1 w-full"
+              title="Resume"
+            />
+          </div>
+        </div>
+      )}
 
       {/* Info Cards */}
       <section className="container mx-auto px-4 pb-20">
         <div className="grid md:grid-cols-3 gap-8">
+
           {/* Key Highlights */}
           <div>
             <div className="flex items-center gap-2 mb-4">
@@ -156,6 +180,7 @@ const AboutUs = () => {
               </div>
             </div>
           </div>
+
         </div>
       </section>
 
