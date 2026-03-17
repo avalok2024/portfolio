@@ -15,6 +15,7 @@ import poster11 from "@/assests/poster/poster11.webp";
 import poster1 from "@/assests/poster/poster1.webp";
 import poster13 from "@/assests/poster/poster13.webp";
 import poster14 from "@/assests/poster/poster14.webp";
+import poster15 from "@/assests/poster/poster15.webp";
 
 const images = [
   { src: poster12, link: "https://luma.com/7jo1otl0", label: "P2P Keyholders Hour : Bengaluru", description: "IBW (India Blockchain Week) for a raw, no-fluff Cypherpunk 2.0 meetup." },
@@ -30,7 +31,8 @@ const images = [
   { src: poster1, link: "https://luma.com/lh5skjdd", label: "House Partyy with P2P.me", description: "Eth Global Delhi, join us for an exclusive House Partyy sponsored by P2P.me" },
   { src: poster11, link: "https://luma.com/j5kmr24l", label: "Cryptoholic x MagicCraft: Game Night", description: "Optimized for engagement." },
   { src: poster13, link: "https://x.com/Cryptoholic_Soc/status/1887224018799108328?s=20", label: "Become a Core Innovator", description: "Join a community of builders shaping the future of Web3." },
-  { src: poster14, link: "https://x.com/P2Pdotme/status/1905149644612722889?s=20", label: "P2P Indian Ambassador Program", description: "P2P.me platform and help expand a global community" }
+  { src: poster14, link: "https://x.com/P2Pdotme/status/1905149644612722889?s=20", label: "P2P Indian Ambassador Program", description: "P2P.me platform and help expand a global community" },
+  { src: poster15, link: "https://www.linkedin.com/posts/avalok_on-the-occasion-of-world-consumer-rights-ugcPost-7439604679531089920-dQ0a", label: "Worlds Consumers Rights Day", description: "Workshop organized by the Bureau of Indian Standards at Shyam Lal College (University of Delhi) " },
 ];
 
 const PortfolioSection = () => {
