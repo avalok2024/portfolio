@@ -16,7 +16,7 @@
       "director": "P2P.me",
       "meta": "New Delhi",
       "lang": "English",
-      "image": "/events/event-ETHGlobal.png",
+      "image": "/events/event-ETHGlobal.webp",
       "imageFallback": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=1200&q=80"
     },
     {
@@ -31,7 +31,7 @@
       "director": "",
       "meta": "New Delhi",
       "lang": "English",
-      "image": "/events/event-delhi-movienight.png",
+      "image": "/events/event-delhi-movienight.webp",
       "imageFallback": ""
     },
     {
@@ -46,7 +46,7 @@
       "director": "",
       "meta": "Jabalpur · Madhya Pardesh",
       "lang": "English",
-      "image": "/events/event-jabalpur-workshop.png",
+      "image": "/events/event-jabalpur-workshop.webp",
       "imageFallback": "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=1200&q=80"
     },
     {
@@ -61,7 +61,7 @@
       "director": "",
       "meta": "Pune",
       "lang": "English",
-      "image": "/events/event-pune-movienight.png",
+      "image": "/events/event-pune-movienight.webp",
       "imageFallback": ""
     },
     {
@@ -76,7 +76,7 @@
       "director": "",
       "meta": "chattarpur · New Delhi",
       "lang": "English",
-      "image": "/events/event-houseparty.png",
+      "image": "/events/event-houseparty.webp",
       "imageFallback": "https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=1200&q=80"
     }
   ]
