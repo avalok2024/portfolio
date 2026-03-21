@@ -241,18 +241,32 @@ const StartScaling = () => {
                         </div>
 
                         <div className="mt-12 pt-8 border-t border-border flex items-center gap-3">
-                            <div className="flex -space-x-2">
-                                {[1, 2, 3, 4].map((i) => (
-                                    <div key={i} className="w-8 h-8 rounded-full bg-muted border-2 border-background" />
-                                ))}
-                            </div>
-                            <div>
-                                <div className="flex text-primary text-sm">
-                                    {[1, 2, 3, 4, 5].map((i) => (
-                                        <Star key={i} className="w-4 h-4 fill-current" />
+                            <div className="mt-12 pt-8 border-t border-border flex items-center gap-3">
+                                <div className="flex -space-x-2">
+                                    {["c4.png", "c3.png", "c2.png", "c1.png"].map((img, i) => (
+                                        <div
+                                            key={i}
+                                            className="w-8 h-8 rounded-full overflow-hidden border-2 border-background"
+                                        >
+                                            <img
+                                                src={`/avatars/${img}`}
+                                                alt={`Avatar ${i + 1}`}
+                                                className="w-full h-full object-cover"
+                                            />
+                                        </div>
                                     ))}
                                 </div>
-                                <p className="text-sm text-muted-foreground">Scaled & Growthe Company/Startups</p>
+
+                                <div>
+                                    <div className="flex text-primary text-sm">
+                                        {[1, 2, 3, 4, 5].map((i) => (
+                                            <Star key={i} className="w-4 h-4 fill-current" />
+                                        ))}
+                                    </div>
+                                    <p className="text-sm text-muted-foreground">
+                                        Scaled & Grew Companies/Startups
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
