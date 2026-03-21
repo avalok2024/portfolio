@@ -37,7 +37,7 @@ const StartScaling = () => {
     });
     const [errors, setErrors] = useState<Record<string, string>>({});
 
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx8sPP1A2hVHECPP48c-k00zZRIi6S595RaqZ_ofJtbgpqxr6oaGGGaA193-1aQriq3/exec";
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyKMpoVdIW10oTpKwRSgsCEAa3PWvNL94qDuvvmcKOLWVW4BL-CdNpwxXepoYHL_Uu7HQ/exec";
 
     // Fetch booked slots when component mounts
     useEffect(() => {
@@ -45,7 +45,10 @@ const StartScaling = () => {
             try {
                 const response = await fetch(SCRIPT_URL);
                 const data = await response.json();
-                setBookedSlots(data);
+                // Ensure data is an array before setting
+                if (Array.isArray(data)) {
+                    setBookedSlots(data);
+                }
             } catch (error) {
                 console.error("Failed to fetch booked slots:", error);
             }
@@ -69,36 +72,31 @@ const StartScaling = () => {
     const validateForm = () => {
         const newErrors: Record<string, string> = {};
 
-        // First Name validation
         if (!formData.firstName.trim()) {
             newErrors.firstName = "First name is required";
         }
 
-        // Email validation
         if (!formData.workEmail.trim()) {
             newErrors.workEmail = "Email is required";
         } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.workEmail)) {
             newErrors.workEmail = "Please enter a valid email address";
         }
 
-        // Company Website validation
         if (!formData.companyWebsite.trim()) {
             newErrors.companyWebsite = "Company website is required";
         } else if (!/^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/.test(formData.companyWebsite)) {
             newErrors.companyWebsite = "Please enter a valid website URL";
         }
 
-        // Date validation
         if (!selectedDate) {
             newErrors.callDate = "Please select a date";
         }
 
-        // Time validation
         if (!selectedTime) {
             newErrors.callTime = "Please select a time";
         } else if (isTimeSlotBooked(selectedTime)) {
             newErrors.callTime = "This time slot is no longer available. Please select another time.";
-            setSelectedTime(""); // Clear the selected time if it's booked
+            setSelectedTime("");
         }
 
         setErrors(newErrors);
@@ -108,7 +106,6 @@ const StartScaling = () => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
-        // Clear error for this field when user starts typing
         if (errors[name]) {
             setErrors((prev) => ({ ...prev, [name]: "" }));
         }
@@ -126,7 +123,7 @@ const StartScaling = () => {
             return;
         }
 
-        // Double-check if the time slot is still available
+        // Client-side duplicate check before submitting
         if (isTimeSlotBooked(selectedTime)) {
             toast({
                 title: "Time Slot Unavailable",
@@ -140,8 +137,15 @@ const StartScaling = () => {
         setIsLoading(true);
 
         try {
-            const response = await fetch(SCRIPT_URL, {
+            // no-cors is required for Google Apps Script from a browser
+            // We cannot read the response body with no-cors, so we optimistically
+            // update the UI and rely on client-side duplicate checking
+            await fetch(SCRIPT_URL, {
                 method: "POST",
+                mode: "no-cors",
+                headers: {
+                    "Content-Type": "text/plain", // must be text/plain with no-cors
+                },
                 body: JSON.stringify({
                     firstName: formData.firstName,
                     lastName: formData.lastName,
@@ -153,36 +157,30 @@ const StartScaling = () => {
                 }),
             });
 
-            const result = await response.json();
-            
-            if (result.success) {
-                // Add the booked slot to the local state
-                setBookedSlots(prev => [...prev, {
-                    date: format(selectedDate!, "yyyy-MM-dd"),
-                    time: selectedTime
-                }]);
+            // Optimistically add the booked slot to local state so it's
+            // immediately blocked for any other bookings in this session
+            setBookedSlots(prev => [...prev, {
+                date: format(selectedDate!, "yyyy-MM-dd"),
+                time: selectedTime,
+            }]);
 
-                // Show success message
-                setIsBooked(true);
-                
-                toast({
-                    title: "Call Booked!",
-                    description: "Your strategy call has been scheduled. Check your email for the calendar invitation.",
-                });
+            setIsBooked(true);
 
-                // Reset form
-                setFormData({
-                    firstName: "",
-                    lastName: "",
-                    workEmail: "",
-                    companyWebsite: "",
-                    primaryGoal: "",
-                });
-                setSelectedDate(undefined);
-                setSelectedTime("");
-            } else {
-                throw new Error(result.error || "Booking failed");
-            }
+            toast({
+                title: "Call Booked!",
+                description: "Your strategy call has been scheduled. Check your email for confirmation.",
+            });
+
+            // Reset form
+            setFormData({
+                firstName: "",
+                lastName: "",
+                workEmail: "",
+                companyWebsite: "",
+                primaryGoal: "",
+            });
+            setSelectedDate(undefined);
+            setSelectedTime("");
 
         } catch (err) {
             toast({
@@ -268,7 +266,7 @@ const StartScaling = () => {
                                 </div>
                                 <h2 className="text-2xl font-bold mb-2">Call Booked Successfully!</h2>
                                 <p className="text-muted-foreground mb-6">
-                                    You have booked the call. Check your email for the calendar invitation and meeting details.
+                                    You have booked the call. Check your email for the confirmation and meeting details.
                                 </p>
                                 <button
                                     onClick={() => setIsBooked(false)}
@@ -303,7 +301,7 @@ const StartScaling = () => {
                                             )}
                                         </div>
                                         <div>
-                                            <label className="text-sm font-medium mb-1.5 block">Last Name (Optional)</label>
+                                            <label className="text-sm font-medium mb-1.5 block">Last Name</label>
                                             <input
                                                 name="lastName"
                                                 value={formData.lastName}
