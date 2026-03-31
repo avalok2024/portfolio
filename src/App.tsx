@@ -8,6 +8,8 @@ import NotFound from "./pages/NotFound";
 import AboutUs from "./pages/AboutUs";
 import StartScaling from "./pages/StartScaling";
 import EventsPage from "./pages/Events";
+import BlogEditor from "./pages/BlogEditor";
+import Blog from "./pages/Blog";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +24,8 @@ const App = () => (
           <Route path="/about" element={<AboutUs />} />
           <Route path="/start-scaling" element={<StartScaling />} />
           <Route path="/events" element={<EventsPage />} />
+          <Route path="/blog" element={<Blog />} />
+<Route path="/blog/editor" element={<BlogEditor />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
