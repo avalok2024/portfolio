@@ -1,1 +1,413 @@
 /* Reset - no constraints on root */
+/* src/App.css */
+
+/* ===== CUSTOM FONT IMPORTS ===== */
+/* Replace these with your actual font file names */
+
+/* Primary Font - Used for body text, buttons, etc. */
+@font-face {
+    font-family: 'CustomPrimary';
+    src: url('/src/assets/fonts/SF-Pro-Display-Regular.otf') format('otf'),
+         url('/src/assets/fonts/SF-Pro-Display-Regular.otf') format('otf');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'CustomPrimary';
+    src: url('/src/assets/fonts/SF-Pro-Display-Medium.otf') format('otf'),
+         url('/src/assets/fonts/SF-Pro-Display-Medium.otf') format('otf');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'CustomPrimary';
+    src: url('/src/assets/fonts/SF-Pro-Display-Bold.otf') format('otf'),
+         url('/src/assets/fonts/SF-Pro-Display-Bold.otf') format('otf');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  /* Heading Font - Used for titles, headings */
+  @font-face {
+    font-family: 'CustomHeading';
+    src: url('/src/assets/fonts/SF-Pro-Display-Regular.otf') format('otf'),
+         url('/src/assets/fonts/SF-Pro-Display-Regular.otf') format('otf');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'CustomHeading';
+    src: url('/src/assets/fonts/SF-Pro-Display-Bold.otf') format('otf'),
+         url('/src/assets/fonts/SF-Pro-Display-Bold.otf') format('otf');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  /* Mono Font - Used for code, tags, etc. */
+  @font-face {
+    font-family: 'CustomMono';
+    src: url('/src/assets/fonts/SF-Pro-Display-Regular.otf') format('otf'),
+         url('/src/assets/fonts/SF-Pro-Display-Regular.otf') format('otf');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  /* ===== CSS VARIABLES ===== */
+  :root {
+    /* Font Families */
+    --font-primary: 'CustomPrimary', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-heading: 'CustomHeading', 'Fraunces', Georgia, 'Times New Roman', serif;
+    --font-mono: 'CustomMono', 'SF Mono', 'Fira Code', 'Courier New', monospace;
+    
+    /* Colors */
+    --color-bg-primary: #05050F;
+    --color-bg-secondary: #0A0A14;
+    --color-bg-card: rgba(255, 255, 255, 0.03);
+    --color-text-primary: #FFFFFF;
+    --color-text-secondary: #E8EDFF;
+    --color-text-muted: #9CA3AF;
+    --color-accent: #f97316;
+    --color-accent-light: #f59e0b;
+    --color-border: rgba(255, 255, 255, 0.08);
+    
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --spacing-2xl: 48px;
+    
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-xl: 24px;
+    --radius-full: 9999px;
+    
+    /* Transitions */
+    --transition-fast: 0.15s ease;
+    --transition-base: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* ===== GLOBAL STYLES ===== */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background: var(--color-bg-primary);
+    color: var(--color-text-secondary);
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+  
+  /* Typography */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    line-height: 1.2;
+  }
+  
+  /* Links */
+  a {
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+  
+  a:hover {
+    color: var(--color-accent-light);
+  }
+  
+  /* Buttons */
+  button {
+    font-family: var(--font-primary);
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+  
+  /* Inputs */
+  input, textarea, select {
+    font-family: var(--font-primary);
+  }
+  
+  /* Code blocks */
+  code, pre {
+    font-family: var(--font-mono);
+  }
+  
+  /* Utility Classes */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+  }
+  
+  .text-gradient {
+    background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateX(-20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes pulseRing {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1.5);
+      opacity: 0;
+    }
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+  
+  /* Scrollbar Styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: var(--color-bg-secondary);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-accent);
+    border-radius: var(--radius-full);
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent-light);
+  }
+  
+  /* Selection */
+  ::selection {
+    background: rgba(249, 115, 22, 0.3);
+    color: var(--color-text-primary);
+  }
+  
+  /* Blog Content Specific Styles */
+  .blog-content {
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+  }
+  
+  .blog-content h1,
+  .blog-content h2,
+  .blog-content h3 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 1.6em 0 0.6em;
+  }
+  
+  .blog-content h1 {
+    font-size: 32px;
+  }
+  
+  .blog-content h2 {
+    font-size: 26px;
+  }
+  
+  .blog-content h3 {
+    font-size: 22px;
+  }
+  
+  .blog-content p {
+    margin: 0 0 1.4em;
+  }
+  
+  .blog-content blockquote {
+    border-left: 3px solid var(--color-accent);
+    margin: 2em 0;
+    padding: 16px 28px;
+    background: rgba(249, 115, 22, 0.08);
+    color: #D1D5DB;
+    font-style: italic;
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  }
+  
+  .blog-content pre {
+    background: #0F0F1A;
+    color: #E5E7EB;
+    border: 1px solid var(--color-border);
+    padding: 20px 24px;
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 1.6em 0;
+  }
+  
+  .blog-content code {
+    background: rgba(249, 115, 22, 0.15);
+    color: var(--color-accent);
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 0.9em;
+  }
+  
+  .blog-content pre code {
+    background: none;
+    color: inherit;
+    padding: 0;
+  }
+  
+  .blog-content img {
+    max-width: 100%;
+    border-radius: var(--radius-md);
+    margin: 1.5em 0;
+    border: 1px solid var(--color-border);
+  }
+  
+  .blog-content a {
+    color: var(--color-accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(249, 115, 22, 0.4);
+    transition: border-color var(--transition-fast);
+  }
+  
+  .blog-content a:hover {
+    border-bottom-color: var(--color-accent);
+  }
+  
+  .blog-content ul,
+  .blog-content ol {
+    padding-left: 28px;
+    margin: 0 0 1.4em;
+  }
+  
+  .blog-content li {
+    margin-bottom: 8px;
+    color: #D1D5DB;
+  }
+  
+  .blog-content hr {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: 2.5em 0;
+  }
+  
+  .blog-content strong {
+    color: var(--color-text-primary);
+    font-weight: 600;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    :root {
+      --spacing-lg: 20px;
+      --spacing-xl: 24px;
+      --spacing-2xl: 32px;
+    }
+    
+    .blog-content {
+      font-size: 16px;
+    }
+    
+    .blog-content h1 {
+      font-size: 28px;
+    }
+    
+    .blog-content h2 {
+      font-size: 24px;
+    }
+    
+    .blog-content h3 {
+      font-size: 20px;
+    }
+  }
+  
+  /* Dark Mode Support (if needed) */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-bg-primary: #05050F;
+      --color-bg-secondary: #0A0A14;
+    }
+  }
+
+
+  .be-editor-content ul,
+.be-editor-content ol {
+  margin: 0 0 0.9em 0;
+  padding-left: 1.6em;
+}
+
+.be-editor-content ul { list-style-type: disc !important; }
+.be-editor-content ol { list-style-type: decimal !important; }
+
+.be-editor-content li {
+  display: list-item !important;
+  margin-bottom: 0.3em;
+}
+
+.be-editor-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+  border: 1px solid var(--border);
+}
+
+.be-editor-content th,
+.be-editor-content td {
+  border: 1px solid var(--border);
+  padding: 8px 10px;
+  text-align: left;
+}
+
+.be-editor-content th {
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+}
