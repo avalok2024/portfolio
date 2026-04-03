@@ -5,10 +5,10 @@ const Navbar = () => {
   const navLinks = [
     { label: "Events", href: "/events" },
     { label: "About Us", href: "/about" },
+    { label: "Blog", href: "/blog" },
     { label: "Services", href: "/" },
     { label: "Process", href: "/" },
     { label: "FAQs", href: "/#faqs" },
-    { label: "Blog", href: "/blog" },
   ];
 
   return (

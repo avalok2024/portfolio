@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaXTwitter, FaLinkedinIn, FaInstagram, FaTelegram } from "react-icons/fa6";
 import { ReactNode } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 type SocialIcon = {
   name: string;
@@ -27,6 +27,8 @@ const Footer: React.FC<FooterProps> = ({
   customFooterLinks,
   customSocialIcons 
 }) => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
   const [mounted, setMounted] = useState<boolean>(false);
 
@@ -38,6 +40,7 @@ const Footer: React.FC<FooterProps> = ({
   const defaultNavItems: NavItem[] = [
     { name: "Events", path: "/events" },
     { name: "About Us", path: "/about" },
+    { name: "Blog", path: "/blog" },
     { name: "Services", path: "/" },
     { name: "Process", path: "/" },
     { name: "FAQs", path: "/#faqs" },
@@ -97,6 +100,46 @@ const Footer: React.FC<FooterProps> = ({
   const footerLinks = customFooterLinks || defaultFooterLinks;
   const socialIcons = customSocialIcons || defaultSocialIcons;
 
+  const getNavbarOffset = () => {
+    const nav = document.querySelector("nav");
+    const navHeight = nav instanceof HTMLElement ? nav.offsetHeight : 0;
+    return navHeight + 12;
+  };
+
+  const scrollToHashWithOffset = (hash: string) => {
+    const id = hash.replace("#", "");
+    if (!id) return;
+    const target = document.getElementById(id);
+    if (!target) return;
+    const top = target.getBoundingClientRect().top + window.scrollY - getNavbarOffset();
+    window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+  };
+
+  const handleInternalNav = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
+    if (!path || path.startsWith("http")) return;
+    e.preventDefault();
+
+    const [rawPathname, rawHash] = path.split("#");
+    const pathname = rawPathname || location.pathname;
+    const hash = rawHash ? `#${rawHash}` : "";
+
+    const performScroll = () => {
+      if (hash) {
+        scrollToHashWithOffset(hash);
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    };
+
+    if (pathname !== location.pathname) {
+      navigate(pathname);
+      setTimeout(performScroll, 120);
+      return;
+    }
+
+    performScroll();
+  };
+
   return (
     <footer id="footer" className="relative border-t border-border/50 bg-gradient-to-b from-background to-background/95 px-4 sm:px-6 py-8 sm:py-10 overflow-hidden">
       {/* Animated background elements */}
@@ -127,12 +170,13 @@ const Footer: React.FC<FooterProps> = ({
             {navItems.map((item, index) => (
               <Link
                 key={item.name}
-                  to={item.path}
+                to={item.path}
                 className="group relative overflow-hidden rounded-full bg-gradient-to-r from-primary/10 to-primary/5 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium transition-all duration-300 hover:shadow-lg hover:shadow-primary/20"
                 style={{
                   animation: mounted ? `fadeInUp 0.5s ease-out ${index * 0.1}s forwards` : 'none',
                   opacity: mounted ? 0 : 1,
                 }}
+                onClick={(e) => handleInternalNav(e, item.path)}
                 onMouseEnter={() => setHoveredLink(item.name)}
                 onMouseLeave={() => setHoveredLink(null)}
               >
@@ -183,6 +227,7 @@ const Footer: React.FC<FooterProps> = ({
                   animation: mounted ? `fadeIn 0.5s ease-out ${index * 0.1 + 0.5}s forwards` : 'none',
                   opacity: mounted ? 0 : 1,
                 }}
+                onClick={(e) => handleInternalNav(e, link.path)}
               >
                 {link.name}
                 <span className="absolute -bottom-1 left-0 h-px w-0 bg-primary transition-all duration-300 group-hover:w-full" />
@@ -232,6 +277,7 @@ const Footer: React.FC<FooterProps> = ({
                   animation: mounted ? `fadeInUp 0.5s ease-out ${index * 0.1}s forwards` : 'none',
                   opacity: mounted ? 0 : 1,
                 }}
+                onClick={(e) => handleInternalNav(e, item.path)}
                 onMouseEnter={() => setHoveredLink(item.name)}
                 onMouseLeave={() => setHoveredLink(null)}
               >
