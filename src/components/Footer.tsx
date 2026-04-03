@@ -41,9 +41,9 @@ const Footer: React.FC<FooterProps> = ({
     { name: "Events", path: "/events" },
     { name: "About Us", path: "/about" },
     { name: "Blog", path: "/blog" },
-    { name: "Services", path: "/" },
     { name: "Process", path: "/" },
     { name: "FAQs", path: "/#faqs" },
+    { name: "Editor", path: "/blog/editor" },
   ];
 
   // Default footer links with paths

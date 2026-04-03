@@ -463,7 +463,7 @@ function PostView({ post, onBack }: { post: BlogPost; onBack: () => void }) {
                 borderRadius: 40,
                 padding: "12px 28px",
                 cursor: "pointer",
-                color: "#f97316",
+                color: "#FF4B3D",
                 fontSize: 14,
                 fontWeight: 700,
                 transition: "all 0.2s",
@@ -591,7 +591,7 @@ function BlogList({ posts, onSelect }: { posts: BlogPost[]; onSelect: (p: BlogPo
               <br />
               <span
                 style={{
-                  background: "linear-gradient(135deg, #f97316, #f59e0b)",
+                  background: "linear-gradient(135deg, #FF4B3D, #FF4B3D)",
                   backgroundClip: "text",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
@@ -642,7 +642,7 @@ function BlogList({ posts, onSelect }: { posts: BlogPost[]; onSelect: (p: BlogPo
                     borderRadius: 40,
                     border: activeTag === tag ? "1px solid rgba(249,115,22,0.6)" : "1px solid rgba(255,255,255,0.1)",
                     background: activeTag === tag ? "rgba(249,115,22,0.15)" : "transparent",
-                    color: activeTag === tag ? "#f97316" : "#9CA3AF",
+                    color: activeTag === tag ? "#FF4B3D" : "#9CA3AF",
                     cursor: "pointer",
                     fontSize: 13,
                     fontWeight: 700,
@@ -744,7 +744,7 @@ function BlogList({ posts, onSelect }: { posts: BlogPost[]; onSelect: (p: BlogPo
                       </div>
                     )}
 
-                    <div style={{ display: "inline-flex", alignItems: "center", gap: 8, color: "#f97316", fontSize: 14, fontWeight: 700, marginBottom: 22, fontFamily: "'Manrope', sans-serif" }}>
+                    <div style={{ display: "inline-flex", alignItems: "center", gap: 8, color: "#FF4B3D", fontSize: 14, fontWeight: 700, marginBottom: 22, fontFamily: "'Manrope', sans-serif" }}>
                       Read full story <i className="ri-arrow-right-line" />
                     </div>
 

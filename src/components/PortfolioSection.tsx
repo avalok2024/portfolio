@@ -70,7 +70,7 @@ const PortfolioSection = () => {
           </h2>
 
           <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-            A selection of our high-performing creative work across multiple social platforms.
+            A selection of our high-performing creative work across multiple social platforms as well as offline events.
           </p>
         </div>
 
