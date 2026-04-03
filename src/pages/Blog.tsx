@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type CSSProperties } from "react";
 import { createClient } from "@supabase/supabase-js";
 import NavBar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -17,6 +17,13 @@ const supabase = createClient(
   import.meta.env.VITE_SUPABASE_ANON_KEY
 );
 
+interface Reference {
+  id: string;
+  title: string;
+  url: string;
+  type: "paper" | "blog";
+}
+
 interface BlogPost {
   id: string;
   title: string;
@@ -27,6 +34,7 @@ interface BlogPost {
   tags: string[];
   published: boolean;
   coverImage?: string;
+  references?: Reference[];
 }
 
 function fromRow(row: any): BlogPost {
@@ -36,8 +44,26 @@ function fromRow(row: any): BlogPost {
     ? row.tags.split(",")
     : [];
 
-  const cover =
-    typeof row.cover_image === "string" ? row.cover_image.trim() : "";
+  const cover = typeof row.cover_image === "string" ? row.cover_image.trim() : "";
+
+  let refs: Reference[] = [];
+  if (row.references) {
+    try {
+      const parsed = typeof row.references === "string" ? JSON.parse(row.references) : row.references;
+      if (Array.isArray(parsed)) {
+        refs = parsed
+          .map((r: any): Reference => ({
+            id: String(r?.id || ""),
+            title: String(r?.title || "").trim(),
+            url: String(r?.url || "").trim(),
+            type: r?.type === "paper" ? "paper" : "blog",
+          }))
+          .filter((r: Reference) => r.title && r.url);
+      }
+    } catch {
+      refs = [];
+    }
+  }
 
   return {
     id: String(row.id || ""),
@@ -49,6 +75,7 @@ function fromRow(row: any): BlogPost {
     tags: rawTags.map((t: string) => String(t).trim()).filter(Boolean),
     published: Boolean(row.published),
     coverImage: cover || undefined,
+    references: refs,
   };
 }
 
@@ -93,7 +120,7 @@ function SmartImage({
 }: {
   src?: string;
   alt: string;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
   fallbackIcon?: string;
 }) {
   const [broken, setBroken] = useState(false);
@@ -237,6 +264,29 @@ function Avatar({ name, size = 32, showRing = false }: { name: string; size?: nu
   );
 }
 
+function ReferenceBadge({ refItem }: { refItem: Reference }) {
+  return (
+    <span
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 6,
+        fontSize: 11,
+        color: "#c4b5fd",
+        padding: "4px 10px",
+        borderRadius: 16,
+        border: "1px solid rgba(167,139,250,0.35)",
+        background: "rgba(167,139,250,0.12)",
+        fontFamily: "'Manrope', sans-serif",
+      }}
+      title={`${refItem.type.toUpperCase()}: ${refItem.title}`}
+    >
+      <i className={refItem.type === "paper" ? "ri-article-line" : "ri-global-line"} />
+      {refItem.title}
+    </span>
+  );
+}
+
 function PostView({ post, onBack }: { post: BlogPost; onBack: () => void }) {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -364,6 +414,45 @@ function PostView({ post, onBack }: { post: BlogPost; onBack: () => void }) {
             style={{ fontSize: 17, lineHeight: 1.8, color: "#E5E7EB", fontFamily: "'Manrope', sans-serif" }}
           />
 
+          {(post.references?.length ?? 0) > 0 && (
+            <div
+              style={{
+                marginTop: 34,
+                padding: "20px 22px",
+                border: "1px solid rgba(255,255,255,0.08)",
+                borderRadius: 14,
+                background: "rgba(255,255,255,0.02)",
+              }}
+            >
+              <h4 style={{ margin: "0 0 12px", color: "#fff", fontSize: 16, fontFamily: "'Fraunces', serif" }}>
+                Special References
+              </h4>
+
+              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                {post.references!.map((ref) => (
+                  <a
+                    key={ref.id}
+                    href={ref.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      color: "#A78BFA",
+                      textDecoration: "none",
+                      fontSize: 14,
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: 8,
+                      fontFamily: "'Manrope', sans-serif",
+                    }}
+                  >
+                    <i className={ref.type === "paper" ? "ri-article-line" : "ri-global-line"} />
+                    {ref.title}
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+
           <div style={{ marginTop: 66, paddingTop: 30, borderTop: "1px solid rgba(255,255,255,0.06)", textAlign: "center" }}>
             <button
               type="button"
@@ -401,7 +490,13 @@ function BlogList({ posts, onSelect }: { posts: BlogPost[]; onSelect: (p: BlogPo
   const filtered = useMemo(() => {
     return posts.filter((p) => {
       const q = search.toLowerCase();
-      const matchSearch = !q || p.title.toLowerCase().includes(q) || p.excerpt.toLowerCase().includes(q);
+      const matchSearch =
+        !q ||
+        p.title.toLowerCase().includes(q) ||
+        p.excerpt.toLowerCase().includes(q) ||
+        (p.references || []).some(
+          (r) => r.title.toLowerCase().includes(q) || r.url.toLowerCase().includes(q)
+        );
       const matchTag = !activeTag || p.tags.includes(activeTag);
       return matchSearch && matchTag;
     });
@@ -637,9 +732,17 @@ function BlogList({ posts, onSelect }: { posts: BlogPost[]; onSelect: (p: BlogPo
                       {featured.title}
                     </h2>
 
-                    <p style={{ fontSize: 15, color: "#9CA3AF", margin: "0 0 22px", lineHeight: 1.6, fontFamily: "'Manrope', sans-serif" }}>
+                    <p style={{ fontSize: 15, color: "#9CA3AF", margin: "0 0 16px", lineHeight: 1.6, fontFamily: "'Manrope', sans-serif" }}>
                       {featured.excerpt}
                     </p>
+
+                    {(featured.references?.length ?? 0) > 0 && (
+                      <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 18 }}>
+                        {featured.references!.slice(0, 2).map((ref) => (
+                          <ReferenceBadge key={ref.id} refItem={ref} />
+                        ))}
+                      </div>
+                    )}
 
                     <div style={{ display: "inline-flex", alignItems: "center", gap: 8, color: "#f97316", fontSize: 14, fontWeight: 700, marginBottom: 22, fontFamily: "'Manrope', sans-serif" }}>
                       Read full story <i className="ri-arrow-right-line" />
@@ -662,102 +765,109 @@ function BlogList({ posts, onSelect }: { posts: BlogPost[]; onSelect: (p: BlogPo
 
               {pageRest.length > 0 && (
                 <div className="blog-grid">
-                  {pageRest.map((post, idx) => (
+                  {pageRest.map((post) => (
                     <article
-                    key={post.id}
-                    onClick={() => onSelect(post)}
-                    style={{
-                      background: "linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01))",
-                      border: "1px solid rgba(255,255,255,0.08)",
-                      borderRadius: 20,
-                      overflow: "hidden",
-                      cursor: "pointer",
-                      transition: "all 0.3s ease",
-                      display: "flex",
-                      flexDirection: "column",
-                      height: "100%", // important
-                    }}
-                  >
-                    <div style={{ height: 210, background: "#0A0A14", overflow: "hidden" }}>
-                      <SmartImage
-                        src={post.coverImage}
-                        alt={post.title}
-                        fallbackIcon="ri-sparkling-line"
-                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                      />
-                    </div>
-                  
-                    <div
+                      key={post.id}
+                      onClick={() => onSelect(post)}
                       style={{
-                        padding: 22,
+                        background: "linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01))",
+                        border: "1px solid rgba(255,255,255,0.08)",
+                        borderRadius: 20,
+                        overflow: "hidden",
+                        cursor: "pointer",
+                        transition: "all 0.3s ease",
                         display: "flex",
                         flexDirection: "column",
-                        flex: 1, // important
-                        minHeight: 230, // keeps cards visually consistent
+                        height: "100%",
                       }}
                     >
-                      {post.tags.length > 0 && (
-                        <div style={{ marginBottom: 14 }}>
-                          <TagPill tag={post.tags[0]} small />
-                        </div>
-                      )}
-                  
-                      <h3
-                        style={{
-                          fontSize: 19,
-                          fontWeight: 700,
-                          color: "#FFFFFF",
-                          margin: "0 0 10px",
-                          lineHeight: 1.38,
-                          fontFamily: "'Fraunces', serif",
-                          display: "-webkit-box",
-                          WebkitLineClamp: 2,
-                          WebkitBoxOrient: "vertical",
-                          overflow: "hidden",
-                          minHeight: "2.76em", // 2 lines locked
-                        }}
-                      >
-                        {post.title}
-                      </h3>
-                  
-                      <p
-                        style={{
-                          fontSize: 13,
-                          color: "#9CA3AF",
-                          margin: "0 0 20px",
-                          lineHeight: 1.6,
-                          fontFamily: "'Manrope', sans-serif",
-                          display: "-webkit-box",
-                          WebkitLineClamp: 3,
-                          WebkitBoxOrient: "vertical",
-                          overflow: "hidden",
-                          minHeight: "4.8em", // 3 lines locked
-                        }}
-                      >
-                        {post.excerpt}
-                      </p>
-                  
+                      <div style={{ height: 210, background: "#0A0A14", overflow: "hidden" }}>
+                        <SmartImage
+                          src={post.coverImage}
+                          alt={post.title}
+                          fallbackIcon="ri-sparkling-line"
+                          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                        />
+                      </div>
+
                       <div
                         style={{
+                          padding: 22,
                           display: "flex",
-                          alignItems: "center",
-                          gap: 10,
-                          paddingTop: 16,
-                          borderTop: "1px solid rgba(255,255,255,0.05)",
-                          marginTop: "auto", // important: pins author row at bottom
+                          flexDirection: "column",
+                          flex: 1,
+                          minHeight: 230,
                         }}
                       >
-                        <Avatar name={post.author} size={28} />
-                        <div style={{ fontFamily: "'Manrope', sans-serif", display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-                          <span style={{ fontSize: 12, color: "#D1D5DB", fontWeight: 700 }}>{post.author}</span>
-                          <span style={{ fontSize: 11, color: "#6B7280" }}>
-                            {formatDate(post.date, { day: "numeric", month: "short" })} · {readingTime(post.content)}
-                          </span>
+                        {post.tags.length > 0 && (
+                          <div style={{ marginBottom: 14 }}>
+                            <TagPill tag={post.tags[0]} small />
+                          </div>
+                        )}
+
+                        <h3
+                          style={{
+                            fontSize: 19,
+                            fontWeight: 700,
+                            color: "#FFFFFF",
+                            margin: "0 0 10px",
+                            lineHeight: 1.38,
+                            fontFamily: "'Fraunces', serif",
+                            display: "-webkit-box",
+                            WebkitLineClamp: 2,
+                            WebkitBoxOrient: "vertical",
+                            overflow: "hidden",
+                            minHeight: "2.76em",
+                          }}
+                        >
+                          {post.title}
+                        </h3>
+
+                        <p
+                          style={{
+                            fontSize: 13,
+                            color: "#9CA3AF",
+                            margin: "0 0 12px",
+                            lineHeight: 1.6,
+                            fontFamily: "'Manrope', sans-serif",
+                            display: "-webkit-box",
+                            WebkitLineClamp: 3,
+                            WebkitBoxOrient: "vertical",
+                            overflow: "hidden",
+                            minHeight: "4.8em",
+                          }}
+                        >
+                          {post.excerpt}
+                        </p>
+
+                        {(post.references?.length ?? 0) > 0 && (
+                          <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 12 }}>
+                            {post.references!.slice(0, 2).map((ref) => (
+                              <ReferenceBadge key={ref.id} refItem={ref} />
+                            ))}
+                          </div>
+                        )}
+
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: 10,
+                            paddingTop: 16,
+                            borderTop: "1px solid rgba(255,255,255,0.05)",
+                            marginTop: "auto",
+                          }}
+                        >
+                          <Avatar name={post.author} size={28} />
+                          <div style={{ fontFamily: "'Manrope', sans-serif", display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+                            <span style={{ fontSize: 12, color: "#D1D5DB", fontWeight: 700 }}>{post.author}</span>
+                            <span style={{ fontSize: 11, color: "#6B7280" }}>
+                              {formatDate(post.date, { day: "numeric", month: "short" })} · {readingTime(post.content)}
+                            </span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </article>
-                  
+                    </article>
                   ))}
                 </div>
               )}
@@ -967,14 +1077,43 @@ export default function Blog() {
         border-bottom-color: #f97316;
       }
 
-      .blog-content ul, .blog-content ol {
-        padding-left: 28px;
-        margin: 0 0 1.4em;
+      /* FIXED list visibility (Tailwind reset override) */
+      .blog-content ul,
+      .blog-content ol {
+        padding-left: 28px !important;
+        margin: 0 0 1.4em !important;
       }
 
+      .blog-content ul { list-style-type: disc !important; }
+      .blog-content ol { list-style-type: decimal !important; }
+
       .blog-content li {
+        display: list-item !important;
         margin-bottom: 8px;
         color: #D1D5DB;
+      }
+
+      /* Table support */
+      .blog-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.2em 0;
+        border: 1px solid rgba(255,255,255,0.12);
+        background: rgba(255,255,255,0.02);
+      }
+
+      .blog-content th,
+      .blog-content td {
+        border: 1px solid rgba(255,255,255,0.12);
+        padding: 10px 12px;
+        text-align: left;
+        color: #E5E7EB;
+      }
+
+      .blog-content th {
+        background: rgba(255,255,255,0.06);
+        color: #FFFFFF;
+        font-weight: 700;
       }
 
       .blog-content hr {
